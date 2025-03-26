@@ -55,7 +55,6 @@ const Achievement = ({ onClose }) => {
 
 
   const showRedemptionCode = useCallback(() => {
-    // 触发烟花效果
     const fireFireworks = () => {
       const duration = 3000;
       const end = Date.now() + duration;

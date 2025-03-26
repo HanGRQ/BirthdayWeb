@@ -16,12 +16,12 @@
     "sweetalert2": "^11.10.6",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://github.com/HanGRQ/BirthdayWeb.git",
+  "homepage": "https://hangrq.github.io/BirthdayWeb",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+   "deploy": "gh-pages -d build -b gh-pages",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
