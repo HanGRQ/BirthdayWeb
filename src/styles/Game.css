@@ -1,0 +1,498 @@
+/* 全局变量 */
+:root {
+  --neon-blue: #00f3ff;
+  --neon-pink: #ff00ff;
+  --neon-green: #00ff00;
+  --dark-bg: #000000;
+  --cyber-shadow-blue: 0 0 10px var(--neon-blue), 0 0 20px rgba(0, 243, 255, 0.5);
+  --cyber-shadow-pink: 0 0 10px var(--neon-pink), 0 0 20px rgba(255, 0, 255, 0.5);
+  --cyber-shadow-green: 0 0 10px var(--neon-green), 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+/* 拼图游戏容器 */
+.puzzle-game {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+/* 拼图板 - 添加赛博朋克风格 */
+.cyber-puzzle {
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid var(--neon-blue);
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+}
+
+/* 拼图碎片样式 */
+.puzzle-piece {
+  box-shadow: 0 0 3px var(--neon-blue) !important;
+  transition: all 0.3s ease !important;
+  border: 1px solid rgba(0, 243, 255, 0.5) !important;
+  position: absolute; /* 确保碎片定位正确 */
+}
+
+.puzzle-piece:hover {
+  box-shadow: 0 0 8px var(--neon-blue), 0 0 12px var(--neon-pink) !important;
+  z-index: 10;
+  transform: scale(1.02);
+}
+
+.puzzle-piece.selected {
+  border: 2px solid var(--neon-pink) !important;
+  box-shadow: 0 0 15px var(--neon-pink) !important;
+  z-index: 20;
+}
+
+/* 重新打乱按钮 */
+.shuffle-button {
+  margin-top: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--neon-pink);
+  color: var(--neon-pink);
+  font-family: 'Orbitron', sans-serif;
+  padding: 10px 25px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.shuffle-button:hover {
+  background-color: rgba(255, 0, 255, 0.2);
+  box-shadow: 0 0 15px var(--neon-pink);
+}
+
+/* ===== 新增布局样式 ===== */
+.puzzle-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  min-height: 100vh; /* 确保容器至少占满视口高度 */
+  background-image: url('../images/cyberpunk-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* 背景蒙版，增加可读性 */
+.puzzle-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 0;
+}
+
+.puzzle-game-wrapper {
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* 确保垂直居中 */
+  position: relative;
+  z-index: 1;
+}
+
+.puzzle-game {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+/* ===== 调整拼图板样式 ===== */
+.puzzle-board {
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+  border: 2px solid var(--neon-blue);
+  width: 300px; /* 设置默认宽度 */
+  height: 300px; /* 设置默认高度 */
+}
+
+/* ===== 音乐控制样式 ===== */
+.music-control {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--neon-blue);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 0 10px var(--neon-blue);
+  transition: all 0.3s ease;
+}
+
+.music-control:hover {
+  box-shadow: 0 0 15px var(--neon-pink);
+  transform: scale(1.1);
+}
+
+.music-control.playing {
+  border-color: var(--neon-pink);
+}
+
+.music-icon {
+  color: var(--neon-blue);
+  font-size: 1.2rem;
+}
+
+.music-control.playing .music-icon {
+  color: var(--neon-pink);
+}
+
+/* 赛博朋克标题样式 */
+.cyber-title-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.cyber-title {
+  font-family: 'CyberwayRiders', 'Orbitron', sans-serif;
+  color: var(--neon-blue);
+  font-size: 1.8rem;
+  text-shadow: 0 0 10px var(--neon-blue), 0 0 20px rgba(0, 243, 255, 0.5);
+  letter-spacing: 2px;
+  animation: cyber-glow 2s infinite alternate;
+  margin: 0 0 5px 0;
+  padding: 0;
+  position: relative;
+}
+
+.cyber-subtitle {
+  font-family: 'DigitalDisco', 'Orbitron', sans-serif;
+  color: var(--neon-pink);
+  font-size: 1.2rem;
+  text-shadow: 0 0 8px var(--neon-pink);
+  margin: 0;
+  animation: cyber-flicker 3s infinite;
+}
+
+/* 闪烁动画 */
+@keyframes cyber-glow {
+  0% {
+    text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+  }
+  100% {
+    text-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-blue), 0 0 40px var(--neon-blue);
+  }
+}
+
+@keyframes cyber-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 8px var(--neon-pink), 0 0 12px var(--neon-pink);
+  }
+  20%, 24%, 55% {
+    opacity: 0.8;
+    text-shadow: none;
+  }
+}
+
+/* ===== 成就相关样式 ===== */
+/* SweetAlert2 赛博朋克定制样式 */
+.cyber-swal-container {
+  z-index: 1000;
+}
+
+.cyber-swal-popup {
+  border: 2px solid var(--neon-blue) !important;
+  background-color: rgba(0, 0, 0, 0.95) !important;
+  box-shadow: var(--cyber-shadow-blue) !important;
+  border-radius: 5px !important;
+  animation: cyber-glow 3s infinite alternate !important;
+}
+
+.cyber-swal-title {
+  font-family: 'CyberwayRiders', 'Orbitron', sans-serif !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--neon-blue) !important;
+  text-shadow: var(--cyber-shadow-blue) !important;
+  padding-bottom: 20px !important;
+}
+
+.cyber-text {
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+}
+
+.cyber-swal-button {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  color: var(--neon-pink) !important;
+  border: 1px solid var(--neon-pink) !important;
+  box-shadow: 0 0 5px var(--neon-pink) !important;
+  font-family: 'Orbitron', sans-serif !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  padding: 10px 25px !important;
+  transition: all 0.3s ease !important;
+}
+
+.cyber-swal-button:hover {
+  background-color: rgba(255, 0, 255, 0.2) !important;
+  box-shadow: 0 0 15px var(--neon-pink) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* 成就内容样式 */
+.achievement-content {
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--neon-blue);
+  box-shadow: inset 0 0 10px rgba(0, 243, 255, 0.3);
+  border-radius: 5px;
+  text-align: left;
+}
+
+.achievement-title {
+  font-family: 'DigitalDisco', 'Orbitron', sans-serif;
+  color: var(--neon-pink);
+  text-shadow: var(--cyber-shadow-pink);
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.day-count {
+  font-size: 1.8rem;
+  color: var(--neon-green);
+  text-shadow: var(--cyber-shadow-green);
+  animation: blink 3s infinite alternate;
+}
+
+.achievement-details {
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+.neon-text {
+  color: var(--neon-pink);
+  text-shadow: 0 0 5px var(--neon-pink);
+  font-weight: bold;
+}
+
+.date-text {
+  color: var(--neon-blue);
+  text-shadow: 0 0 5px var(--neon-blue);
+}
+
+.achievement-progress {
+  margin-top: 20px;
+}
+
+.progress-label {
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-percent {
+  color: var(--neon-green);
+  text-shadow: 0 0 5px var(--neon-green);
+}
+
+.progress-bar {
+  height: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--neon-blue);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+  border-radius: 10px;
+  animation: pulse 2s infinite;
+}
+
+/* 兑换码样式 */
+.redemption-code {
+  padding: 20px;
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+}
+
+.code-display {
+  margin: 20px auto;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 2px solid var(--neon-green);
+  border-radius: 5px;
+  box-shadow: 0 0 15px var(--neon-green);
+  color: var(--neon-green);
+  font-family: 'DigitalDisco', 'Orbitron', monospace;
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px var(--neon-green);
+  animation: code-glow 2s infinite alternate;
+  user-select: all;
+}
+
+.code-hint {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+/* 额外的动画效果 */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 10px var(--neon-green), 0 0 20px rgba(0, 255, 0, 0.5);
+  }
+  40% {
+    opacity: 0.8;
+    text-shadow: 0 0 5px var(--neon-green);
+  }
+}
+
+@keyframes code-glow {
+  0% {
+    box-shadow: 0 0 5px var(--neon-green), 0 0 10px rgba(0, 255, 0, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 15px var(--neon-green), 0 0 25px rgba(0, 255, 0, 0.7);
+  }
+}
+
+/* 加载中动画 */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: black;
+  color: var(--neon-blue);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  text-shadow: var(--cyber-shadow-blue);
+  animation: cyber-flicker 2s infinite;
+}
+
+/* ===== 响应式调整 ===== */
+@media (max-width: 768px) {
+  .puzzle-container {
+    padding: 10px;
+  }
+  
+  .puzzle-board {
+    max-width: 90vw;
+    max-height: 90vw;
+  }
+  
+  .cyber-title {
+    font-size: 1.5rem;
+  }
+  
+  .cyber-subtitle {
+    font-size: 1rem;
+  }
+  
+  .achievement-title {
+    font-size: 1.3rem;
+  }
+  
+  .day-count {
+    font-size: 1.5rem;
+  }
+  
+  .code-display {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    padding: 10px;
+  }
+  
+  .swal2-popup {
+    padding: 1em !important;
+    width: 90% !important;
+    max-width: 500px !important;
+  }
+}
+
+@media (max-height: 700px) {
+  .puzzle-board {
+    max-height: 60vh;
+  }
+  
+  .shuffle-button {
+    margin-top: 10px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .achievement-title {
+    font-size: 1.1rem;
+  }
+  
+  .day-count {
+    font-size: 1.3rem;
+  }
+  
+  .achievement-details {
+    font-size: 0.9rem;
+  }
+  
+  .code-display {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    padding: 8px;
+  }
+  
+  .redemption-code p {
+    font-size: 0.9rem;
+  }
+  
+  .swal2-popup {
+    padding: 0.8em !important;
+    width: 95% !important;
+  }
+  
+  .cyber-swal-button {
+    padding: 8px 16px !important;
+    font-size: 0.9rem !important;
+  }
+}

@@ -1,0 +1,248 @@
+/* 赛博朋克主题样式 */
+.cyber-achievement {
+  font-family: 'CyberwayRiders', 'Orbitron', 'Courier New', monospace;
+  border: 1px solid #00f3ff;
+  padding: 1.5rem;
+  background: rgba(0, 10, 20, 0.7);
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+}
+
+/* 数字显示专用字体 */
+.digital-display {
+  font-family: 'DigitalDisco', monospace;
+}
+
+/* 版本跟踪器 - 使用Orbitron字体 */
+.version-tracker {
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* 霓虹文字效果 - 使用CyberwayRiders字体 */
+.neon-text {
+  font-family: 'CyberwayRiders', 'Orbitron', sans-serif;
+  color: #00f3ff;
+  text-shadow: 0 0 5px #00f3ff;
+}
+
+/* 故障效果 - 使用DigitalDisco字体 */
+.glitch-text {
+  font-family: 'DigitalDisco', 'Courier New', monospace;
+  animation: glitch 1s linear infinite;
+}
+
+/* 兑换码样式 - 使用DigitalDisco字体 */
+.code-display {
+  font-family: 'DigitalDisco', monospace;
+}
+
+/* 其余样式保持不变... */
+.version-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.version-tag {
+  color: #00f3ff;
+  font-weight: bold;
+  text-shadow: 0 0 5px #00f3ff;
+}
+
+.progress-container {
+  height: 40px;  /* 增加高度（长度） */
+  width: 90%;    /* 增加宽度 */
+  max-width: 600px; /* 可选：设置最大宽度 */
+  background: #111;
+  margin: 1rem auto; /* 居中显示 */
+  position: relative;
+  border-radius: 20px; /* 圆角效果 */
+  overflow: hidden; /* 确保子元素圆角生效 */
+  border: 1px solid rgba(0, 243, 255, 0.3); /* 边框增强科技感 */
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #ff00ff 0%, #00f3ff 100%);
+  width: var(--progress);
+  position: relative;
+  transition: width 1s ease;
+  border-radius: 20px; /* 与容器保持一致 */
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.5); /* 发光效果 */
+}
+
+.progress-text {
+  position: absolute;
+  right: 15px; /* 增大右边距 */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #000;
+  font-weight: bold;
+  font-size: 14px; /* 可选：调整文字大小 */
+  text-shadow: 0 0 2px #fff; /* 文字描边效果 */
+}
+
+.version-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.feature-tag {
+  background: rgba(0, 243, 255, 0.2);
+  padding: 0.3rem 0.6rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+
+/* 成就树 */
+.skill-tree {
+  margin: 2rem 0;
+  padding: 1rem;
+  border: 1px solid #00f3ff;
+}
+
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.achievement-node {
+  padding: 0.8rem;
+  border-radius: 3px;
+  position: relative;
+}
+
+.achievement-node.unlocked {
+  background: rgba(0, 255, 0, 0.1);
+  border-left: 3px solid #0f0;
+}
+
+.achievement-node.locked {
+  background: rgba(255, 0, 255, 0.1);
+  border-left: 3px solid #f0f;
+  opacity: 0.6;
+}
+
+.age-tag {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  font-size: 0.7rem;
+  color: #ccc;
+}
+
+/* 霓虹文字效果 */
+.neon-text {
+  color: #00f3ff;
+  text-shadow: 0 0 5px #00f3ff;
+}
+
+.neon-cyan { color: #00f3ff; text-shadow: 0 0 5px #00f3ff; }
+.neon-pink { color: #ff00ff; text-shadow: 0 0 5px #ff00ff; }
+.neon-purple { color: #cc00ff; text-shadow: 0 0 5px #cc00ff; }
+
+/* 故障效果 */
+.glitch-text {
+  animation: glitch 1s linear infinite;
+}
+
+@keyframes glitch {
+  0% { text-shadow: 1px 0 0 cyan, -1px 0 0 magenta; }
+  25% { transform: translateX(-2px); }
+  50% { text-shadow: -1px 0 0 magenta, 1px 0 0 cyan; }
+  75% { transform: translateX(2px); }
+  100% { text-shadow: 1px 0 0 cyan, -1px 0 0 magenta; }
+}
+
+/* 兑换码样式 */
+.redemption-box {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.code-display {
+  font-size: 2rem;
+  letter-spacing: 3px;
+  background: #111;
+  padding: 1rem;
+  margin: 1rem 0;
+  border: 1px solid #00f3ff;
+  font-family: monospace;
+}
+
+.hint-text {
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+/* 添加在文件末尾 */
+
+/* 烟花容器 */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* 增强兑换码弹窗的z-index */
+.swal2-container {
+  z-index: 10000 !important;
+}
+
+/* 兑换码弹窗样式 */
+.redemption-box {
+  text-align: center;
+  padding: 20px;
+}
+
+.code-display {
+  font-family: 'DigitalDisco', monospace;
+  font-size: 2rem;
+  letter-spacing: 3px;
+  background: rgba(0,0,0,0.7);
+  padding: 15px;
+  margin: 15px 0;
+  border: 1px solid #00f3ff;
+  color: #ff00ff;
+  text-shadow: 0 0 5px #ff00ff;
+}
+
+.glitch-bg {
+  animation: glitch 1s linear infinite;
+}
+
+.hint-text {
+  color: #00f3ff;
+  font-size: 0.9rem;
+}
+
+/* 赛博朋克风格按钮 */
+.cyber-confirm-btn {
+  background: linear-gradient(90deg, #ff00ff, #00f3ff) !important;
+  border: none !important;
+  color: #000 !important;
+  font-weight: bold !important;
+  letter-spacing: 1px;
+}
+
+.cyber-cancel-btn {
+  background: transparent !important;
+  border: 1px solid #ff00ff !important;
+  color: #ff00ff !important;
+}
+
+/* 故障动画效果 */
+@keyframes glitch {
+  0% { text-shadow: 1px 0 0 cyan, -1px 0 0 magenta; }
+  25% { transform: translateX(-2px); }
+  50% { text-shadow: -1px 0 0 magenta, 1px 0 0 cyan; }
+  75% { transform: translateX(2px); }
+  100% { text-shadow: 1px 0 0 cyan, -1px 0 0 magenta; }
+}

@@ -1,0 +1,294 @@
+/* src/styles/index.css - 全局样式 */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+
+:root {
+  --neon-blue: #00f3ff;
+  --neon-pink: #ff00ff;
+  --matrix-green: #00ff00;
+  --cyber-purple: #bd00ff;
+  --cyber-yellow: #ffee00;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  background-color: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* 赛博朋克背景 */
+.cyber-bg {
+  position: relative;
+  background-color: #000;
+  background-image: 
+    url('../images/cyberpunk-bg.jpg'),
+    linear-gradient(
+      rgba(18, 16, 16, 0.8) 50%, 
+      rgba(0, 0, 0, 0.8) 50%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.03),
+      rgba(0, 255, 0, 0.02),
+      rgba(0, 0, 255, 0.03)
+    );
+  background-size: cover, 100% 2px, 3px 100%;
+  background-position: center;
+  background-blend-mode: overlay;
+  min-height: 100vh;
+}
+
+.cyber-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      transparent 0%,
+      rgba(0, 0, 0, 0.3) 50%,
+      transparent 100%
+    );
+  background-size: 100% 0.5px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+/* 霓虹文字效果 */
+.neon-text {
+  color: #fff;
+  text-shadow:
+    0 0 5px var(--neon-blue),
+    0 0 10px var(--neon-blue),
+    0 0 20px var(--neon-blue),
+    0 0 40px var(--neon-blue);
+}
+
+/* 故障文字效果 */
+.glitch-text {
+  position: relative;
+  animation: glitch 2s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 0.05em 0 0 rgba(255,0,0,.75), -0.05em -0.025em 0 rgba(0,255,0,.75);
+  }
+  14% {
+    text-shadow: 0.05em 0 0 rgba(255,0,0,.75), -0.05em -0.025em 0 rgba(0,255,0,.75);
+  }
+  15% {
+    text-shadow: -0.05em -0.025em 0 rgba(255,0,0,.75), 0.025em 0.025em 0 rgba(0,255,0,.75);
+  }
+  49% {
+    text-shadow: -0.05em -0.025em 0 rgba(255,0,0,.75), 0.025em 0.025em 0 rgba(0,255,0,.75);
+  }
+  50% {
+    text-shadow: 0.025em 0.05em 0 rgba(255,0,0,.75), 0.05em 0 0 rgba(0,255,0,.75);
+  }
+  99% {
+    text-shadow: 0.025em 0.05em 0 rgba(255,0,0,.75), 0.05em 0 0 rgba(0,255,0,.75);
+  }
+  100% {
+    text-shadow: 0.05em 0 0 rgba(255,0,0,.75), -0.05em -0.025em 0 rgba(0,255,0,.75);
+  }
+}
+
+/* 霓虹按钮 */
+.neon-button {
+  position: relative;
+  display: inline-block;
+  padding: 12px 32px;
+  background-color: transparent;
+  color: var(--neon-blue);
+  border: 2px solid var(--neon-blue);
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s;
+  text-shadow: 0 0 8px var(--neon-blue);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.neon-button:hover {
+  background-color: rgba(0, 243, 255, 0.1);
+  box-shadow: 
+    0 0 5px var(--neon-blue),
+    0 0 15px var(--neon-blue),
+    0 0 30px var(--neon-blue);
+  text-shadow:
+    0 0 5px var(--neon-blue),
+    0 0 10px var(--neon-blue),
+    0 0 20px var(--neon-blue);
+}
+
+.neon-button:active {
+  transform: scale(0.95);
+}
+
+.neon-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 243, 255, 0.4),
+    transparent
+  );
+  transition: left 0.7s;
+}
+
+.neon-button:hover::before {
+  left: 100%;
+}
+
+/* 滚动条自定义 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-blue);
+  border-radius: 4px;
+  box-shadow: 0 0 5px var(--neon-blue);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-pink);
+  box-shadow: 0 0 5px var(--neon-pink);
+}
+
+/* 链接样式 */
+a {
+  color: var(--neon-blue);
+  text-decoration: none;
+  transition: all 0.3s;
+  position: relative;
+}
+
+a:hover {
+  color: var(--neon-pink);
+  text-shadow: 0 0 8px var(--neon-pink);
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--neon-pink);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease-out;
+}
+
+a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* 文本选择样式 */
+::selection {
+  background-color: rgba(255, 0, 255, 0.3);
+  color: #fff;
+  text-shadow: 0 0 5px var(--neon-pink);
+}
+
+/* 加载动画 */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 100%;
+  font-size: 1.2rem;
+  color: var(--neon-blue);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--neon-blue);
+  border-bottom-color: var(--neon-pink);
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 霓虹文本变色效果 */
+.neon-text-rainbow {
+  animation: neonRainbow 8s linear infinite;
+}
+
+@keyframes neonRainbow {
+  0% { text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue); }
+  25% { text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink); }
+  50% { text-shadow: 0 0 10px var(--matrix-green), 0 0 20px var(--matrix-green); }
+  75% { text-shadow: 0 0 10px var(--cyber-purple), 0 0 20px var(--cyber-purple); }
+  100% { text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue); }
+}
+
+/* 响应式布局调整 */
+@media (max-width: 768px) {
+  .neon-button {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .neon-button {
+    padding: 8px 18px;
+    font-size: 0.8rem;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.2rem;
+  }
+}
