@@ -64,7 +64,6 @@ const Achievement = ({ onClose }) => {
       const frame = () => {
         if (Date.now() > end) return;
         
-        // 左右交叉发射
         confetti({
           particleCount: 20,
           angle: 60,
